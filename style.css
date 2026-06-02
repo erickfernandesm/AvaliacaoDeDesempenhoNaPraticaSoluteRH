@@ -1,5 +1,5 @@
 :root {
-  --laranja: #F38C25;
+  --laranja: #f38c25;
   --laranja-esc: #D9760F;
   --laranja-claro: #FBE9D8;
   --escuro: #0D0D0D;
@@ -62,6 +62,41 @@ img {
 
 section {
   padding: 64px 0;
+  position: relative;
+}
+
+/* Divisor entre sections — linha fina com brilho laranja no centro */
+section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(243, 140, 37, .55) 50%,
+    transparent 100%);
+}
+
+/* Revelação ao rolar para uma nova section (fade + subir) */
+section.reveal-init > .wrap {
+  opacity: 0;
+  transform: translateY(42px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+
+section.in-view > .wrap {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  section.reveal-init > .wrap {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 h1, h2, h3 {
@@ -156,16 +191,8 @@ h2.titulo .destaque {
   background: linear-gradient(160deg, #000000 0%, #0D0D0D 100%);
   color: #fff;
   text-align: left;
-  padding: 28px 0 60px;
-}
-
-.hero .tag {
-  display: block;
-  text-align: center;
-  color: var(--laranja);
-  font-size: clamp(15px, 2vw, 19px);
-  font-weight: 500;
-  margin-bottom: 16px;
+  padding: 34px 0 52px;
+  overflow: hidden;
 }
 
 .hero .wrap {
@@ -173,20 +200,41 @@ h2.titulo .destaque {
 }
 
 .hero-top {
-  display: grid;
-  grid-template-columns: auto auto;
-  gap: 28px;
-  align-items: center;
-  justify-content: space-between;
+  display: block;
+  position: relative;
+  min-height: 500px;
+}
+
+.hero-left {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  padding: 120px 0 28px;
+}
+
+.hero .tag {
+  display: block;
+  text-align: left;
+  color: var(--laranja);
+  font-size: clamp(17px, 2.2vw, 24px);
+  font-weight: 600;
+  line-height: 1.25;
+  max-width: 360px;
+  margin: -40px 0 24px;
+}
+
+.hero .tag b {
+  font-weight: 800;
 }
 
 .hero h1 {
-  font-size: clamp(44px, 6.4vw, 84px);
-  font-weight: 700;
-  line-height: 1.08;
+  font-size: clamp(40px, 6vw, 82px);
+  font-weight: 800;
+  line-height: 1.05;
   letter-spacing: -1px;
   margin: 0;
   white-space: nowrap;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, .85), 0 0 4px rgba(0, 0, 0, .7);
 }
 
 .hero h1 .destaque {
@@ -194,16 +242,31 @@ h2.titulo .destaque {
 }
 
 .hero-top .caminhos-img {
-  max-width: 480px;
+  position: absolute;
+  z-index: 1;
+  right: -5%;
+  bottom: -130px;
+  width: 70%;
+  max-width: 880px;
   margin: 0;
+  pointer-events: none;
+}
+
+.hero-top .caminhos-img img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .hero p.lead {
+  position: relative;
+  z-index: 2;
   font-size: clamp(18px, 2.7vw, 25px);
   color: #dcdcdc;
   max-width: none;
-  margin: 16px 0 0;
+  margin: 14px 0 0;
   text-align: justify;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, .55);
 }
 
 .hero p.lead b {
@@ -1354,13 +1417,27 @@ footer .disc {
   }
 
   .hero-top {
-    grid-template-columns: 1fr;
-    gap: 24px;
+    display: block;
+    min-height: 0;
+  }
+
+  .hero-left {
+    max-width: none;
+    text-align: center;
+    padding: 0;
+  }
+
+  .hero .tag {
+    text-align: center;
+    max-width: none;
+    margin: 0 0 14px;
   }
 
   .hero-top .caminhos-img {
-    max-width: 420px;
-    margin: 0 auto;
+    position: static;
+    width: 100%;
+    max-width: 440px;
+    margin: 20px auto 0;
   }
 
   .hero p.lead {

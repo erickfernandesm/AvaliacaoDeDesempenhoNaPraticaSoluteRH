@@ -37,6 +37,24 @@
   itens.forEach(function (el) { obs.observe(el); });
 })();
 
+// Revelação ao trocar de section (fade + subir)
+(function () {
+  var secs = document.querySelectorAll('section');
+  if (!secs.length) return;
+  // sem suporte a IntersectionObserver: deixa tudo visível
+  if (!('IntersectionObserver' in window)) return;
+  secs.forEach(function (s) { s.classList.add('reveal-init'); });
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  secs.forEach(function (s) { obs.observe(s); });
+})();
+
 // Autoridade cascata
 (function () {
   var autor = document.querySelector('.autor');
