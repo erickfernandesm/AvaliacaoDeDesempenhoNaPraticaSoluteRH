@@ -285,6 +285,41 @@ h2.titulo .destaque {
   min-height: 230px;
 }
 
+/* Hero — faixa tablet (761px a 1100px): empilha texto e imagem */
+@media (min-width: 761px) and (max-width: 1100px) {
+  .hero-top {
+    display: block;
+    min-height: 0;
+  }
+
+  .hero-left {
+    max-width: none;
+    padding: 8px 0 0;
+    text-align: center;
+  }
+
+  .hero .tag {
+    text-align: center;
+    max-width: none;
+    margin: 0 0 16px;
+  }
+
+  .hero h1 {
+    white-space: nowrap;
+  }
+
+  .hero-top .caminhos-img {
+    position: static;
+    width: 100%;
+    max-width: 560px;
+    margin: 24px auto 0;
+  }
+
+  .hero p.lead {
+    margin-top: 28px;
+  }
+}
+
 /* Caminhos / 2 vias (imagem) */
 .caminhos-img {
   max-width: 560px;
@@ -505,6 +540,58 @@ h2.titulo .destaque {
 .depo .quem span {
   font-size: 12px;
   color: var(--texto-claro);
+}
+
+/* Recortes de jornal — carrossel automático (conscientização) */
+.jornais-carrossel {
+  margin-top: 36px;
+  overflow: hidden;
+  /* esmaece levemente as bordas laterais */
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 2%, #000 98%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 2%, #000 98%, transparent 100%);
+}
+
+.jornais-track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  animation: jornais-scroll 40s linear infinite;
+}
+
+.jornais-carrossel:hover .jornais-track {
+  animation-play-state: paused;
+}
+
+.jornal {
+  margin: 0 26px 0 0;
+  flex: 0 0 auto;
+  height: 380px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, .12);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, .55);
+}
+
+.jornal img {
+  display: block;
+  height: 100%;
+  width: auto;
+}
+
+@keyframes jornais-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jornais-track {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: auto;
+    gap: 20px;
+  }
+  .jornal { margin: 0; }
 }
 
 /* Passo a passo */
@@ -1477,6 +1564,18 @@ footer .disc {
 
   .perdido-txt {
     top: 0;
+    text-align: center;
+  }
+
+  /* "Está perdido e gerindo" na 1ª linha, "no escuro?" na 2ª */
+  .perdido-txt h2 .br1 {
+    display: none;
+  }
+
+  .perdido-txt p {
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   /* fotos da Rose não ficam boas no mobile / escondidas */

@@ -37,6 +37,28 @@
   itens.forEach(function (el) { obs.observe(el); });
 })();
 
+// Carrossel de jornais — rolagem automática lenta e contínua
+(function () {
+  var track = document.querySelector('.jornais-track');
+  if (!track) return;
+  // respeita quem prefere menos movimento: deixa estático (vira grade via CSS)
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var originais = Array.prototype.slice.call(track.children);
+  if (!originais.length) return;
+
+  // duplica os itens para o loop ser perfeito (translateX -50%)
+  originais.forEach(function (el) {
+    var clone = el.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+    track.appendChild(clone);
+  });
+
+  // velocidade constante: ~14s por jornal (quanto mais jornais, mais tempo de volta)
+  var segundosPorItem = 14;
+  track.style.animationDuration = (originais.length * segundosPorItem) + 's';
+})();
+
 // Revelação ao trocar de section (fade + subir)
 (function () {
   var secs = document.querySelectorAll('section');
