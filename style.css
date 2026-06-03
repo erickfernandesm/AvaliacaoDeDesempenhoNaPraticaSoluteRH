@@ -191,8 +191,27 @@ h2.titulo .destaque {
   background: linear-gradient(160deg, #000000 0%, #0D0D0D 100%);
   color: #fff;
   text-align: left;
-  padding: 34px 0 52px;
+  padding: 0 0 52px;
   overflow: hidden;
+}
+
+.hero-tarja {
+  width: 100%;
+  background: #ff1414;
+  text-align: center;
+  padding: 14px 20px;
+}
+
+.hero-tarja span {
+  color: #fff;
+  font-size: clamp(15px, 2vw, 22px);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.hero-tarja b {
+  font-weight: 800;
 }
 
 .hero .wrap {
@@ -244,10 +263,10 @@ h2.titulo .destaque {
 .hero-top .caminhos-img {
   position: absolute;
   z-index: 1;
-  right: -5%;
+  right: -6%;
   bottom: -130px;
-  width: 70%;
-  max-width: 880px;
+  width: 72%;
+  max-width: 905px;
   margin: 0;
   pointer-events: none;
 }
@@ -264,7 +283,7 @@ h2.titulo .destaque {
   font-size: clamp(18px, 2.7vw, 25px);
   color: #dcdcdc;
   max-width: none;
-  margin: 14px 0 0;
+  margin: 40px 0 0;
   text-align: justify;
   text-shadow: 0 1px 6px rgba(0, 0, 0, .55);
 }
@@ -975,6 +994,66 @@ h2.titulo .destaque {
 .precos-2 .preco-box {
   max-width: none;
   margin: 0;
+}
+
+/* Formas de pagamento dentro da box de valores */
+.formas-pagamento {
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, .1);
+  text-align: center;
+}
+
+.formas-pagamento .fp-label {
+  display: block;
+  font-size: 12px;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  color: #9a9a9a;
+  margin-bottom: 10px;
+}
+
+.formas-pagamento .fp-icones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.formas-pagamento .fp-icones img {
+  height: 26px;
+  width: auto;
+  background: #fff;
+  border-radius: 5px;
+  padding: 3px 5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .25);
+}
+
+.formas-pagamento .fp-selos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.formas-pagamento .fp-hotmart {
+  display: block;
+  height: 34px;
+  width: auto;
+  background: #fff;
+  border-radius: 8px;
+  padding: 9px 18px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .3);
+}
+
+.formas-pagamento .fp-seguro {
+  display: block;
+  height: 34px;
+  width: auto;
+  border-radius: 8px;
 }
 
 .preco-box-simple {
